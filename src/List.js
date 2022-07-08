@@ -16,9 +16,10 @@ const BookRow = (props)=> {
 
     return (
         <tr>
+            <td>{props.book.isbn}</td>
             <td>{props.book.title}</td>
             <td>{props.book.author}</td>
-            <td>{props.book.isbn}</td>
+
             <td>
                 <button
                     onClick={handleRemove}
@@ -52,15 +53,16 @@ export default function List(props) {
             <table>
                 <thead>
                     <tr>
+                        <th>ISBN</th>
                         <th>Title</th>
                         <th>Author</th>
-                        <th>ISBN</th>
                     </tr>
                 </thead>
                 <tbody>
                     {books.map(
                         (book) => 
-                            <BookRow 
+                            <BookRow
+                                key={book.isbn.toString()} 
                                 book={book} 
                                 onAfterChange={props.onAfterChange}
                             />

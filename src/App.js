@@ -11,17 +11,22 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div>
-        <Form
-          onAfterChange={handleAfterChange}/>
+    <>
+      <div id = "App" className="App">
+        <h3>Biblioteca</h3>
+        <br/>
+        <div>
+          <Form
+            onAfterChange={handleAfterChange}/>
+        </div>
+        <br/>
+        <div>
+          <List
+            onAfterChange={handleAfterChange}
+            newTimestamp={newTimestamp}/>
+        </div>
       </div>
-      <div>
-        <List
-          onAfterChange={handleAfterChange}
-          newTimestamp={newTimestamp}/>
-      </div>
-    </div>
+    </>
   );
 }
 

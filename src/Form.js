@@ -4,12 +4,14 @@ import Client from './Client';
 
 export default function Form(props) {
 
+    const initialBook = {
+        title: '',
+        author: '',
+        isbn: ''
+    }
+
     const [book,setBook] = 
-        useState({
-            title: '',
-            author: '',
-            isbn: ''
-        });
+        useState(initialBook);
 
     const handleChange = ({target})=>{
         setBook((prev)=>{
@@ -26,6 +28,7 @@ export default function Form(props) {
             ()=>{
                 //chamar o handler handleFormAfterPost que vem nos props, pra refazer a lista 
                 props.onAfterChange();
+                setBook(initialBook);
             }
         )
         .catch(err => alert(err));
@@ -34,33 +37,51 @@ export default function Form(props) {
 //rendering
     return (
         <>
-            <p>Form</p>
-            <form>
-                <label for='title'>Title</label>
-                <input 
-                    id='title'
-                    name='title'
-                    type='text'
-                    value={book.title}
-                    onChange={handleChange}/>
-                <br/>
-                <label for='author'>Author</label>
-                <input 
-                    id='author'
-                    name='author'
-                    type='text'
-                    value={book.author}
-                    onChange={handleChange}/>
-                <br/>
-                <label for='title'>ISBN</label>
-                <input 
-                    id='isbn'
-                    name='isbn'
-                    type='text'
-                    value={book.isbn}
-                    onChange={handleChange}/>
-                <br/>
-            </form>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>ISBN</label>
+                        </td>
+                        <td>
+                            <input 
+                                id='isbn'
+                                name='isbn'
+                                type='text'
+                                value={book.isbn}
+                                onChange={handleChange}/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label>Title</label>
+                        </td>
+                        <td>
+                            <input 
+                                id='title'
+                                name='title'
+                                type='text'
+                                value={book.title}
+                                onChange={handleChange}/>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>
+                            <label>Author</label>
+                        </td>
+                        <td>
+                            <input 
+                                id='author'
+                                name='author'
+                                type='text'
+                                value={book.author}
+                                onChange={handleChange}/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
             <button onClick={handleSubmit}>Submit</button>
         </>

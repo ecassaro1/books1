@@ -5,7 +5,7 @@ let Client = {
     get: ()=> {
         return new Promise((resolve,reject)=>{
             xhttp.onload = function() {
-                resolve(JSON.parse(this.response));
+                resolve((this.response?JSON.parse(this.response):"no response"));
             }
 
             xhttp.open("GET", url);
@@ -15,7 +15,7 @@ let Client = {
     post: (book)=>{
         return new Promise((resolve,reject)=>{
             xhttp.onload = function() {
-                resolve((this.response?JSON.parse(this.response):""));
+                resolve((this.response?JSON.parse(this.response):"no response"));
             }
             xhttp.onerror = function(error) {
                 debugger;
@@ -31,7 +31,7 @@ let Client = {
     delete: (isbn)=>{
         return new Promise((resolve,reject)=>{
             xhttp.onload = function() {
-                resolve((this.response?JSON.parse(this.response):""));
+                resolve((this.response?JSON.parse(this.response):"no response"));
             }
             xhttp.onerror = function(error) {
                 debugger;
