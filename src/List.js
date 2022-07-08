@@ -1,20 +1,28 @@
 import React, {useState,useEffect} from 'react';
 import Client from './Client';
 
-const BookRow = ({book})=> {
+const BookRow = (props)=> {
     const handleRemove = ({target})=> {
-        alert('Remove ISBN='+target.id);
+        //alert('Remove ISBN='+target.id);
+        Client.delete(target.id)        
+        .then(
+            ()=>{
+                //chamar o handler handleFormAfterPost que vem nos props, pra refazer a lista 
+                props.onAfterChange();
+            }
+        )
+        .catch(err => alert(err));;
     }
 
     return (
         <tr>
-            <td>{book.title}</td>
-            <td>{book.author}</td>
-            <td>{book.isbn}</td>
+            <td>{props.book.title}</td>
+            <td>{props.book.author}</td>
+            <td>{props.book.isbn}</td>
             <td>
                 <button
                     onClick={handleRemove}
-                    id={book.isbn}>
+                    id={props.book.isbn}>
                     Remove
                 </button>
             </td>
@@ -50,7 +58,13 @@ export default function List(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {books.map((book) => <BookRow book={book} />)}
+                    {books.map(
+                        (book) => 
+                            <BookRow 
+                                book={book} 
+                                onAfterChange={props.onAfterChange}
+                            />
+                    )}
                 </tbody>
             </table>
         </>

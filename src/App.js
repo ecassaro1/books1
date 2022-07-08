@@ -6,16 +6,21 @@ import Form from './Form.js';
 function App() {
   const [newTimestamp,setNewTimestamp] = useState(new Date().getTime());
 
-  const handleFormAfterPost = ()=>{
+  const handleAfterChange = ()=>{
     setNewTimestamp(new Date().getTime());
   }
 
   return (
     <div className="App">
-      <Form
-        onAfterPost={handleFormAfterPost}/>
-      <List
-        newTimestamp={newTimestamp}/>
+      <div>
+        <Form
+          onAfterChange={handleAfterChange}/>
+      </div>
+      <div>
+        <List
+          onAfterChange={handleAfterChange}
+          newTimestamp={newTimestamp}/>
+      </div>
     </div>
   );
 }

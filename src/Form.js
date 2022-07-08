@@ -25,7 +25,7 @@ export default function Form(props) {
         .then(
             ()=>{
                 //chamar o handler handleFormAfterPost que vem nos props, pra refazer a lista 
-                props.onAfterPost();
+                props.onAfterChange();
             }
         )
         .catch(err => alert(err));
