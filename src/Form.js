@@ -21,7 +21,14 @@ export default function Form(props) {
     }
 
     const handleSubmit = (evt)=>{
-        Client.post(book).then(console("Posting done"));
+        Client.post(book)
+        .then(
+            ()=>{
+                //chamar o handler handleFormAfterPost que vem nos props, pra refazer a lista 
+                props.onAfterPost();
+            }
+        )
+        .catch(err => alert(err));
     }
 
 //rendering

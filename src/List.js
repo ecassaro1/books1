@@ -22,8 +22,9 @@ const BookRow = ({book})=> {
     )  
 }
 
-export default function List() {
+export default function List(props) {
     const [books,setBooks] = useState([]);
+
     useEffect(
         ()=>{
             Client.get().then(
@@ -32,7 +33,7 @@ export default function List() {
                 }
             );
         },
-        []
+        [props.newTimestamp]
     );
 
 //rendering    

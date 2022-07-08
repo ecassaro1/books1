@@ -13,7 +13,20 @@ let Client = {
         })
     },
     post: (book)=>{
-        alert("Client is posting a book with title=" + book.title);
+        return new Promise((resolve,reject)=>{
+            xhttp.onload = function() {
+                resolve((this.response?JSON.parse(this.response):""));
+            }
+            xhttp.onerror = function(error) {
+                debugger;
+                reject("deu ruim... Error="+error);
+            }
+
+            xhttp.open("POST", url );
+            xhttp.setRequestHeader('X-Requested-With', 'XMLHttpRequest'); 
+            xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+            xhttp.send(JSON.stringify(book));
+        })
     }
 }
 

@@ -1,17 +1,21 @@
 import './App.css';
+import React, {useState} from 'react';
 import List from './List.js';
 import Form from './Form.js';
 
 function App() {
+  const [newTimestamp,setNewTimestamp] = useState(new Date().getTime());
+
   const handleFormAfterPost = ()=>{
-    debugger;
+    setNewTimestamp(new Date().getTime());
   }
 
   return (
     <div className="App">
       <Form
         onAfterPost={handleFormAfterPost}/>
-      <List/>
+      <List
+        newTimestamp={newTimestamp}/>
     </div>
   );
 }
