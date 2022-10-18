@@ -1,6 +1,6 @@
 const xhttp = new XMLHttpRequest();
-//const url = "https://46nyg947v6.execute-api.us-east-1.amazonaws.com/test/book";
-const url = "https://cjl2a17k1e.execute-api.us-east-1.amazonaws.com/test1/Books";
+//const url = "https://46nyg947v6.execute-api.us-east-1.amazonaws.com/test/book"; //API gateway booksApi na AWS
+const url = "https://cjl2a17k1e.execute-api.us-east-1.amazonaws.com/test1/Books"; //API gateway BooksApiGHttp1 na AWS 
 
 let Client = {
     get: ()=> {
